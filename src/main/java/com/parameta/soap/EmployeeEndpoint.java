@@ -13,6 +13,9 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import java.time.LocalDate;
 import java.time.Period;
 
+/**
+ * Servidor SOAP, recibe el XML en /ws, valida y persistimos en DB
+ */
 @Endpoint
 public class EmployeeEndpoint {
 
@@ -42,8 +45,8 @@ public class EmployeeEndpoint {
         e.setApellidos(req.getApellidos());
         e.setTipoDocumento(req.getTipoDocumento());
         e.setNumeroDocumento(req.getNumeroDocumento());
-        e.setFechaNacimiento(LocalDate.parse(req.getFechaNacimiento()));   // yyyy-MM-dd
-        e.setFechaVinculacion(LocalDate.parse(req.getFechaVinculacion())); // yyyy-MM-dd
+        e.setFechaNacimiento(LocalDate.parse(req.getFechaNacimiento()));
+        e.setFechaVinculacion(LocalDate.parse(req.getFechaVinculacion()));
         e.setCargo(req.getCargo());
         e.setSalario(req.getSalario());
 

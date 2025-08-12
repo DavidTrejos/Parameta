@@ -13,6 +13,10 @@ import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
+/**
+ * Clase principal del SOAP en la APP: Registra el servlet de Spring-WS. publica el WSDL desde
+ * el XSD que creamos y configura posteriormente el marshaller + cliente SOAP.
+ */
 @Configuration
 @EnableWs
 public class SoapConfig {
@@ -25,7 +29,7 @@ public class SoapConfig {
         return new ServletRegistrationBean<>(servlet, "/ws/*");
     }
 
-    @Bean(name = "employee") // => /ws/employee.wsdl
+    @Bean(name = "employee")
     public DefaultWsdl11Definition wsdl(XsdSchema employeeSchema) {
         DefaultWsdl11Definition d = new DefaultWsdl11Definition();
         d.setPortTypeName("EmployeePort");
@@ -47,6 +51,11 @@ public class SoapConfig {
         return m;
     }
 
+    /**
+     * Cliente SOAP primer nivel. Conversión a XML de la data.
+     * @param marshaller
+     * @return
+     */
     @Bean
     public WebServiceTemplate webServiceTemplate(Jaxb2Marshaller marshaller) {
         WebServiceTemplate t = new WebServiceTemplate();

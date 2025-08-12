@@ -19,6 +19,7 @@ import java.time.format.DateTimeParseException;
 @Service
 public class EmployeeService {
 
+    //Format estipulado de fecha.
     private static final DateTimeFormatter ISO = DateTimeFormatter.ISO_LOCAL_DATE;
 
     private final SoapEmployeeClient soapClient;
@@ -29,6 +30,11 @@ public class EmployeeService {
         this.repository = repository;
     }
 
+    /**
+     * Método principal del caso de uso. Donde se orquesta el flujo completo. Mapeo del DTO Rest a la clase SOAP.
+     * @param req
+     * @return
+     */
     public EmployeeResponseDTO process(EmployeeRequestParams req) {
         LocalDate nacimiento = parseDate(req.fechaNacimiento(), "fechaNacimiento");
         LocalDate vinculacion = parseDate(req.fechaVinculacion(), "fechaVinculacion");

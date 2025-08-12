@@ -18,6 +18,12 @@ public class SoapEmployeeClient {
         this.template = template;
     }
 
+    /**
+     * Recibe CreateEmployeeRequest y con marshaller lo convierte a XML, lo envia e endpointUri
+     *  recibe el XML de respuesta y lo convierte de vuelta en CreateEmployeeResponse
+     * @param req
+     * @return
+     */
     public CreateEmployeeResponse createEmployee(CreateEmployeeRequest req) {
         return (CreateEmployeeResponse) template.marshalSendAndReceive(endpointUri, req);
     }
